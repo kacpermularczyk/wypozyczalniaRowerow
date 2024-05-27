@@ -1,50 +1,58 @@
 {extends file="reserv.tpl"}
 
-{block name=header}
-
-<!-- Banner -->
-<section id="banner">
-<header>
-	<h2>Dzień dobry, <strong>Kacper</strong></h2>
-	<p>
-		W tej sekcji możesz dokonać rezerwacji interesującego Cię roweru.
-	</p>
-</header>
-</section>
-
+{block name=offer}
+    <section id="features" class="container special">
+        <header>
+            {block name=filtration}{/block}
+        </header>
+        <div class="row">
+            {foreach $bikes as $b}
+            <article class="col-4 col-12-mobile special">
+                <a href="#" class="image featured"><img src="{$conf->app_url}/images/{$b["picture"]}" alt="" /></a>
+                <header>
+                    <h3><a href="#jumpHere" class = "circled scrolly">{$b["model"]} ({$b["type"]}) - {$b["price"]}</a></h3>
+                </header>
+                <p>
+                    {$b["description"]}
+                </p>
+            </article>
+            {/foreach}
+        </div>
+        <br><br>
+        {if count($conf->roles) > 0}
+            {block name=rent}{/block}
+        {/if}
+    </section>
 {/block}
 
-{block name=panel}
+{block name=filtration}
+    <form class="rentForm">
+        <select name="category">
+            <option value="" selected disabled hidden>Wybierz typ roweru</option>
+            <option value="">Wszystkie rowery</option>
+            {foreach $types as $t}
+                <option value="{$t["id_type"]}">{$t["type"]}</option>
+            {/foreach}
+        </select><br>
+        <button>Filtruj</button>
+    </form><br>
+{/block}
 
-<div class="wrapper style1">
-
-	<div class="container">
-		<article id="main" class="special">
-			<header>
-				<h2><a href="">Rezerwacja</a></h2>
-				<p>
-					Wybierz typ roweru i termin rezerwacji.
-				</p>
-			</header>
-			<form id="optionsForm">
-				<select>
-					<option>Model 1</option>
-					<option>Model 2</option>
-					<option>Model 3</option>
-					<option>Model 4</option>
-					<option>Model 5</option>
-					<option>Model 6</option>
-					<option>Model 7</option>
-					<option>Model 8</option>
-					<option>Model 9</option>
-					<option>Model 10</option>
-					</select>
-					<p id="left"> od kiedy<br> <input type="date"> </p>
-					<p id="right"> do kiedy<br> <input type="date"> </p>
-				<button>Cena</button>
-				<button>Zamów</button>
-			</form>
-	</div>
-</div>
-
+{block name=rent}
+    <div id="jumpHere"></div>
+    <hr>
+    <form class="rentForm">
+        <h2>Rezerwacja</h2><br>
+        <select>
+            <option>Model 1</option>
+            <option>Model 2</option>
+            <option>Model 3</option>
+            <option>Model 4</option>
+        </select><br>
+        <p>Od kiedy</p>
+        <input type="date"><br><br>
+        <p>Do kiedy</p>
+        <input type="date">
+        <br><br><button>Zarezerwuj</button>
+    </form>
 {/block}

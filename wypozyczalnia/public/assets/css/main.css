@@ -2429,7 +2429,7 @@ input, select, textarea {
 		background: #fff;
 		text-align: center;
 		padding: 4.5em 0 4.5em 0;
-		margin-bottom: 1.5em;
+		margin-bottom: 0;
 	}
 
 		#banner header > p {
@@ -3180,35 +3180,65 @@ input, select, textarea {
 {
 	font-size: 1em;
 }
-#optionsForm
+
+.rentForm
 {
 	text-align: center;
 }
-#optionsForm p
+.rentForm p
 {
-	text-align: center;
-	width:45%;
-	font-size:1.5em;
-	margin-top: 1em;
+	text-align: left;
+	padding-left:0.5em;
 }
-#optionsForm input
+.rentForm select
 {
-	margin-top: 1em;
+	font-size: 1.5em;
+}
+.rentForm button
+{
+	font-size: 1.5em;
+}
+.rentForm input
+{
+	font-size: 1.5em;
+}
+.rentForm p
+{
+	font-size: 1.5em;
+}
+.rentForm input
+{
+	width:100%;
+	padding:0.3em;
+}
+
+#log select
+{
 	font-size: 1em;
-	width:80%;
-}
-#left
-{
-	float:left;
-}
-#right
-{
-	float:right;
-}
-#optionsForm button
-{
-	font-size:1.5em;
-	margin:0.5em;
+	background-color: rgba(128, 128, 128, 0);
+	color:white;
 	text-align: center;
-	width:20%;
+	letter-spacing: 0.2em;
+}
+#log textarea
+{
+	font-size: 1em;
+	background-color: rgba(128, 128, 128, 0);
+	color:white;
+}
+#log select option
+{
+	color:black;
+}
+#log input[type=file]
+{
+	color:white;
+	margin-left:3em;
+}
+#log input[type=file]::file-selector-button
+{
+	background-color: #df7366;
+	color:white;
+	border-color: #df7366;
+	border-radius: 0.5em;
 }

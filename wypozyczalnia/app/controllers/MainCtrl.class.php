@@ -3,12 +3,27 @@
 namespace app\controllers;
 
 use core\App;
+use core\Utils;
+use core\ParamUtils;
 
 class MainCtrl {
+    private $bikes;
+
     public function action_mainView(){
+        try {
+            $this->bikes = App::getDB()->select("bikes",["[><]types_of_bikes" =>["id_type" => "id_type"]],["model","price","type","picture"]);
+        } catch (\PDOException $e) {
+            Utils::addErrorMessage('Wystąpił błąd podczas pobierania informacji z bazy danych');
+            if (App::getConf()->debug){
+                Utils::addErrorMessage($e->getMessage());
+            }
+        }
+
         $this->generateView();
     }
     public function generateView(){
+        App::getSmarty()->assign('bikes', $this->bikes); //do bd
+
         App::getSmarty()->assign('windowTitle','Strona glowna');
         App::getSmarty()->assign('firstTitle','Wypożyczalnia rowerów');
         App::getSmarty()->assign('secondTitle','Sosnowiec, Ulicowska 5');

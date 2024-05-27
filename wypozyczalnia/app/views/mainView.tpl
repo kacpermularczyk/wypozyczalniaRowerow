@@ -133,3 +133,27 @@
 </div>
 
 {/block}
+
+{block name=galery}
+
+<!-- Carousel -->
+<header id="jumpHere3">
+    <h3 id="toCenter">Najczęściej wybierane rowery</h3>
+</header>
+<section class="carousel">
+    <div class="reel">
+        {foreach $bikes as $b}
+        <article>
+            <a href="" class="image featured"><img src="{$conf->app_url}/images/{$b["picture"]}" alt="" /></a>
+            <header>
+                <h3><a href="">{$b["model"]} ({$b["type"]}) - {$b["price"]}</a></h3>
+            </header>
+            {if $b@index eq 9}
+                {break}
+            {/if}
+        </article>
+        {/foreach}
+    </div>
+</section>
+
+{/block}

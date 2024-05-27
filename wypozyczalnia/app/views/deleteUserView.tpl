@@ -4,16 +4,20 @@
 
 <!-- Inner -->
 <div class="inner" id="log">
-    <form action="{$conf->action_root}login" method="post">
+    <form action="{$conf->action_root}deleteUser" method="post">
         <header>
             <h1><a href="" id="logo">{$title|default:"Title"}</a></h1>
             <hr />
-            <input placeholder="Login" type="text" name="login" value="{$form->login}"><br>
-            <input placeholder="Hasło" type="password" name="password">
-        </header>
+            <select name="users">
+                <option value="" selected disabled hidden>Wybierz usera</option>
+                {foreach $users as $u}
+                    <option value="{$u["id_user"]}">{$u["login"]}</option>
+                {/foreach}     
+            </select><br>
         <footer>
             <button>{$buttonText|default:"OK"}</button>
         </footer>
+
 
         {include file='messages.tpl'}
 

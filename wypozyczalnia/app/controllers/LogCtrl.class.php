@@ -35,18 +35,28 @@ class LogCtrl {
       Utils::addErrorMessage('Nie podano hasła');
     }
 
-    if(App::getMessages()->isError())
-        return false;
-
-    if($this->form->login == "admin" && $this->form->password == "admin"){ //tutaj pozniej zamienic na bd
-        RoleUtils::addRole('admin');
-    } else if ($this->form->login == "user" && $this->form->password == "user"){
-        RoleUtils::addRole('user');
-    } else{
-        Utils::addErrorMessage('Niepoprawny login lub hasło');
+    if(App::getMessages()->isError()){
+      return false;
     }
 
-    return !App::getMessages()->isError();
+    try{
+      $this->users = App::getDB()->select('users', ['login','password']);
+    }
+    catch(\PDOException $e){
+        Utils::addErrorMessage('Wystąpił błąd podczas odczytu danych');
+        if (App::getConf()->debug){
+            Utils::addErrorMessage($e->getMessage());
+        }      
+    }
+
+    foreach($this->users as $u){
+      if($this->form->login == $u['login'] && $this->form->password == $u['password']){
+        return !App::getMessages()->isError();
+      }
+    }
+
+    Utils::addErrorMessage('Niepoprawny login lub hasło');
+    return false;
   }
 
   public function action_loginView(){
@@ -54,10 +64,29 @@ class LogCtrl {
   }
 
   public function action_login() {
-    if ($this->validate()){
-        App::getRouter()->redirectTo("mainView");
-    } else {
-        $this->generateView(); // zostajesz na stronie log jak sie nie zalogujesz
+    if($this->validate()){
+      RoleUtils::addRole('user'); //zalozenie - kazdy kto ma konto jest userem (CO NAJMNIEJ)
+
+      try{
+        $this->idUser = App::getDB()->get('users', ['id_user'], ['login' => $this->form->login]);
+
+        $this->roles = App::getDB()->select('user_role', ['[><]roles' => ['id_role' => 'id_role']], ['role'], ['AND' => ['id_user' => $this->idUser, 'roles.is_activated' => 1, 'user_role.is_activated' => 1]]);
+      }
+      catch(\PDOException $e){
+          Utils::addErrorMessage('Wystąpił błąd podczas odczytu danych');
+          if (App::getConf()->debug){
+              Utils::addErrorMessage($e->getMessage());
+          }      
+      }
+
+      foreach($this->roles as $r){
+        RoleUtils::addRole($r['role']);
+      }
+
+      App::getRouter()->redirectTo("mainView");
+    }
+    else{
+      $this->generateView(); // zostajesz na stronie log jak sie nie zalogujesz
     }
   }
 

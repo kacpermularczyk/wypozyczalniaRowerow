@@ -26,7 +26,7 @@
 
 				</div>
 
-			{include file='galery.tpl'}
+			{block name=galery}{/block}
 
 			{include file='footer.tpl'}
 
