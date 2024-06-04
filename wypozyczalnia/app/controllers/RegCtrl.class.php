@@ -11,7 +11,6 @@ use app\forms\RegisterForm;
 class RegCtrl {
   private $form;
   private $accounts;
-  private $helper;
 
   public function __construct() {
     $this->form = new RegisterForm();
@@ -19,9 +18,9 @@ class RegCtrl {
   public function validate(){
     $v = new Validator();
 
-    $this->form->firstName = $v->validateFromRequest('firstName', ['min_length' => 5, 'max_length' => 30, 'validator_message' => 'Imie ma mieć od 5 do 30 znaków']);
-    $this->form->surname = $v->validateFromRequest('surname', ['min_length' => 5, 'max_length' => 30, 'validator_message' => 'Nazwisko ma mieć od 5 do 30 znaków']);
-    $this->form->email = $v->validateFromRequest('email', ['min_length' => 5, 'max_length' => 30, 'validator_message' => 'email ma mieć od 5 do 30 znaków']);
+    $this->form->firstName = $v->validateFromRequest('firstName', ['regexp' => '/^[A-Za-z]+$/', 'min_length' => 5, 'max_length' => 30, 'validator_message' => 'Imie ma mieć od 5 do 30 znaków i składać się tylko z liter']);
+    $this->form->surname = $v->validateFromRequest('surname', ['regexp' => '/^[A-Za-z]+$/', 'min_length' => 5, 'max_length' => 30, 'validator_message' => 'Nazwisko ma mieć od 5 do 30 znaków i składać się tylko z liter']);
+    $this->form->email = $v->validateFromRequest('email', ['email' => true,'min_length' => 5, 'max_length' => 30, 'validator_message' => 'email ma mieć od 5 do 30 znaków']);
     $this->form->login = $v->validateFromRequest('login', ['min_length' => 5, 'max_length' => 30, 'validator_message' => 'Login ma mieć od 5 do 30 znaków']);
     $this->form->password = $v->validateFromRequest('password', ['min_length' => 5, 'max_length' => 30, 'validator_message' => 'Hasło ma mieć od 5 do 30 znaków']);
     $this->form->passwordRepeat = ParamUtils::getFromRequest('passwordRepeat');
@@ -85,12 +84,21 @@ class RegCtrl {
     if($this->validate()){
       try{
         $this->whenModified = date('Y/m/d H:i:s');
+        $this->form->password = password_hash($this->form->password, PASSWORD_DEFAULT);
+        $this->form->firstName = strtolower($this->form->firstName);
+        $this->form->firstName = ucfirst($this->form->firstName);
+        $this->form->surname = strtolower($this->form->surname);
+        $this->form->surname = ucfirst($this->form->surname);
         
-        App::getDB()->insert("users", ["first_name" => $this->form->firstName, "surname" => $this->form->surname, "e-mail" => $this->form->email, "login" => $this->form->login, "password" => $this->form->password, "when_modified" => $this->whenModified]);
+        App::getDB()->insert("users", ["first_name" => $this->form->firstName, "surname" => $this->form->surname, "e-mail" => $this->form->email, "login" => $this->form->login, "password" => $this->form->password, "when_modified" => $this->whenModified, "is_active" => 1]);
 
         $this->form->id = App::getDB()->get("users", ["id_user"], ["login" => $this->form->login]);
 
         App::getDB()->update("users", ["who_modified" => $this->form->id["id_user"]], ["login" => $this->form->login]);
+
+        $this->roleUserId = App::getDB()->get("roles", ["id_role"], ["role" => "user"]);
+
+        App::getDB()->insert("user_role", ["id_user" => $this->form->id['id_user'], "id_role" => $this->roleUserId['id_role'], "active_since" => $this->whenModified, "is_activated" => 1]);
       }
       catch (\PDOException $e){
           Utils::addErrorMessage('Wystąpił błąd podczas zapisu danych');

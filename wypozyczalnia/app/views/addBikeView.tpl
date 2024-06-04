@@ -17,7 +17,7 @@
             </select><br>
             <input placeholder="Cena" type="text" name="price"><br>
             <textarea name="description"></textarea><br>
-            <input type="file" name="picture">
+            <input type="file" name="picture" accept="image/png, image/jpg, image/jpeg">
         </header>
         <footer>
             <button>{$buttonText|default:"OK"}</button>

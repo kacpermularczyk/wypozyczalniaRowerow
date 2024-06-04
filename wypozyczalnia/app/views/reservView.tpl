@@ -3,20 +3,10 @@
 {block name=offer}
     <section id="features" class="container special">
         <header>
-            {block name=filtration}{/block}
+            {block name=searching}{/block}
         </header>
-        <div class="row">
-            {foreach $bikes as $b}
-            <article class="col-4 col-12-mobile special">
-                <a href="#" class="image featured"><img src="{$conf->app_url}/images/{$b["picture"]}" alt="" /></a>
-                <header>
-                    <h3><a href="#jumpHere" class = "circled scrolly">{$b["model"]} ({$b["type"]}) - {$b["price"]}</a></h3>
-                </header>
-                <p>
-                    {$b["description"]}
-                </p>
-            </article>
-            {/foreach}
+        <div class="row" id="bikesToReload">
+            {include file="bikesList.tpl"}
         </div>
         <br><br>
         {if count($conf->roles) > 0}
@@ -25,34 +15,28 @@
     </section>
 {/block}
 
-{block name=filtration}
-    <form class="rentForm">
-        <select name="category">
-            <option value="" selected disabled hidden>Wybierz typ roweru</option>
-            <option value="">Wszystkie rowery</option>
-            {foreach $types as $t}
-                <option value="{$t["id_type"]}">{$t["type"]}</option>
-            {/foreach}
-        </select><br>
-        <button>Filtruj</button>
-    </form><br>
+{block name=searching}
+    <form id="searchForm" class="rentForm" onsubmit="ajaxPostForm('searchForm','{$conf->action_root}bikesOnly','bikesToReload'); return false;">
+        <input type="text" name="search">
+        <br><button class="space">Szukaj</button>
+        {if count($conf->roles) > 0}
+            <button id="scroll" href="#jumpHere" class ="circled scrolly" class="space">W dół</button>
+        {/if}
+    </form><br><br>
 {/block}
 
 {block name=rent}
     <div id="jumpHere"></div>
     <hr>
-    <form class="rentForm">
-        <h2>Rezerwacja</h2><br>
-        <select>
-            <option>Model 1</option>
-            <option>Model 2</option>
-            <option>Model 3</option>
-            <option>Model 4</option>
-        </select><br>
+    <form class="rentForm" action="{$conf->action_root}reservation" method="post">
+        <h2>Rezerwacja</h2><br><br>
+        <p>Model do wypożyczenia</p>
+        <input type="text" id="input" name="modelToReserv"><br>
         <p>Od kiedy</p>
-        <input type="date"><br><br>
+        <input type="datetime-local" name="dateStart"><br><br>
         <p>Do kiedy</p>
-        <input type="date">
-        <br><br><button>Zarezerwuj</button>
+        <input type="datetime-local" name="dateEnd">
+        <br><br><br><button>Zarezerwuj</button>
     </form>
+    {include file='messages.tpl'}
 {/block}

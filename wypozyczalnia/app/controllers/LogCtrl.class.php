@@ -6,6 +6,7 @@ use core\App;
 use core\Utils;
 use core\RoleUtils;
 use core\ParamUtils;
+use core\SessionUtils;
 use app\forms\LoginForm;
 
 class LogCtrl {
@@ -41,6 +42,7 @@ class LogCtrl {
 
     try{
       $this->users = App::getDB()->select('users', ['login','password']);
+      $this->checkIfUserIsActive = App::getDB()->get('users', ['is_active'], ['login' => $this->form->login]);
     }
     catch(\PDOException $e){
         Utils::addErrorMessage('Wystąpił błąd podczas odczytu danych');
@@ -50,8 +52,15 @@ class LogCtrl {
     }
 
     foreach($this->users as $u){
-      if($this->form->login == $u['login'] && $this->form->password == $u['password']){
-        return !App::getMessages()->isError();
+      if($this->form->login == $u['login'] && password_verify($this->form->password, $u['password'])){ // passwordVerify sprawdza czy haslo zgadza sie z zahaszowanym haslem w bazie - POLE W BAZIE HASLO MA MIEC VARCHAR - DLUGOSC 255
+
+        if($this->checkIfUserIsActive['is_active'] == 0){
+          Utils::addErrorMessage('To konto już nie istnieje');
+          return false;
+        }
+        else{
+          return !App::getMessages()->isError();
+        }
       }
     }
 
@@ -65,7 +74,6 @@ class LogCtrl {
 
   public function action_login() {
     if($this->validate()){
-      RoleUtils::addRole('user'); //zalozenie - kazdy kto ma konto jest userem (CO NAJMNIEJ)
 
       try{
         $this->idUser = App::getDB()->get('users', ['id_user'], ['login' => $this->form->login]);
@@ -82,6 +90,8 @@ class LogCtrl {
       foreach($this->roles as $r){
         RoleUtils::addRole($r['role']);
       }
+
+      SessionUtils::store('userId', $this->idUser['id_user']);
 
       App::getRouter()->redirectTo("mainView");
     }

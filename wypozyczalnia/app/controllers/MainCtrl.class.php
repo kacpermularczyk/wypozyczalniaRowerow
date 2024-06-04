@@ -11,7 +11,7 @@ class MainCtrl {
 
     public function action_mainView(){
         try {
-            $this->bikes = App::getDB()->select("bikes",["[><]types_of_bikes" =>["id_type" => "id_type"]],["model","price","type","picture"]);
+            $this->bikes = App::getDB()->select("bikes",["[><]types_of_bikes" =>["id_type" => "id_type"]],["model","price","type","picture"], ["is_active" => 1]);
         } catch (\PDOException $e) {
             Utils::addErrorMessage('Wystąpił błąd podczas pobierania informacji z bazy danych');
             if (App::getConf()->debug){

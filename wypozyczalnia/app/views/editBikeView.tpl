@@ -8,12 +8,6 @@
         <header>
             <h1><a href="" id="logo">{$title|default:"Title"}</a></h1>
             <hr />
-            <select name="bikeToChange">
-                <option value="" selected disabled hidden>Wybierz rower do zmiany</option>
-                {foreach $bikes as $b}
-                    <option value="{$b["id_bike"]}">{$b["model"]}</option>
-                {/foreach}                
-            </select><br>
             <input placeholder="Model roweru" type="text" name="model"><br>
             <select name="bikeType">
                 <option value="" selected disabled hidden>Wybierz typ roweru</option>
@@ -23,7 +17,7 @@
             </select><br>
             <input placeholder="Cena" type="text" name="price"><br>
             <textarea name="description"></textarea><br>
-            <input type="file" name="picture">
+            <input type="file" name="picture" accept="image/png, image/jpg, image/jpeg">
         </header>
         <footer>
             <button>{$buttonText|default:"OK"}</button>
