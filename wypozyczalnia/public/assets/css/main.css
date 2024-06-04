@@ -3242,3 +3242,38 @@ input, select, textarea {
 	border-color: #df7366;
 	border-radius: 0.5em;
 }
+
+
+
+.row header button{
+	font-size:1em;
+	margin-bottom:0.5em;
+}
+#left{
+	float: left;
+	font-size:0.8em;
+}
+#right{
+	float: right;
+	font-size:0.8em;
+}
+.row p{
+	clear: both;
+}
+
+.space{
+	margin-left:0.5em;
+	margin-right:0.5em;
+}
+
+table, th, td{
+	border:#1f1920 0.15em solid;
+	padding:0.5em;
+	font-size:1.5em;
+	text-align: center;
+}
+
+table button{
+	font-size:0.5em;
+	margin-bottom:0.5em;
+}
