@@ -23,6 +23,7 @@
                 <!-- Copyright -->
                     <div class="copyright">
                         <ul class="menu">
+                            <li>App by Kacper Mularczyk</li>
                             <li>&copy; Untitled. All rights reserved.</li>
                             <li><a href="http://html5up.net">Design: HTML5 UP</a></li>
                             <li><a href="https://www.freepik.com">Photos designed by Freepik</a></li>
