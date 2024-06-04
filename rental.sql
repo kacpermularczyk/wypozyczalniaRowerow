@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Maj 28, 2024 at 01:07 AM
+-- Generation Time: Cze 04, 2024 at 02:39 AM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -33,34 +33,44 @@ CREATE TABLE `bikes` (
   `description` varchar(300) NOT NULL,
   `price` double NOT NULL,
   `picture` varchar(100) NOT NULL,
-  `id_type` int(11) NOT NULL
+  `bike_condition` varchar(30) NOT NULL,
+  `id_type` int(11) NOT NULL,
+  `is_active` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Dumping data for table `bikes`
 --
 
-INSERT INTO `bikes` (`id_bike`, `model`, `description`, `price`, `picture`, `id_type`) VALUES
-(3, 'TCX-05', 'Rower TCX-05, wykonany z wysokiej jakości materiałów, idealny dla miłośników aktywnego spędzania wolnego czasu. Stalowa rama, widoczny amortyzator i duże koło tylne zapewniają komfort i stabilność.', 25.99, 'bike1.jpg', 1),
-(4, 'AVN-01', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 2),
-(5, 'AOP-59', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 2),
-(6, 'AOP-59', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 2),
-(7, 'AOP-59', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 3),
-(8, 'AOP-59', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 2),
-(9, 'AOP-59', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 2),
-(10, 'AOP-59', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 4),
-(11, 'AOP-59', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 2),
-(12, 'AOP-59', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 2),
-(13, 'AOP-59', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 4),
-(14, 'AOP-59', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 2),
-(15, 'AOP-59', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 2),
-(16, 'AOP-59', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 2),
-(17, 'AOP-59', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 2),
-(18, 'AOP-59', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 2),
-(19, 'AOP-59', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 1),
-(20, 'AOP-59', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 2),
-(21, 'AOP-59', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 2),
-(22, 'AOP-59', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 2);
+INSERT INTO `bikes` (`id_bike`, `model`, `description`, `price`, `picture`, `bike_condition`, `id_type`, `is_active`) VALUES
+(3, 'TCX-05', 'Rower TCX-05, wykonany z wysokiej jakości materiałów, idealny dla miłośników aktywnego spędzania wolnego czasu. Stalowa rama, widoczny amortyzator i duże koło tylne zapewniają komfort i stabilność.', 25.99, 'bike1.jpg', 'Dostępny', 1, 1),
+(4, 'AVN-01', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 'Dostępny', 2, 1),
+(5, 'AOP-59', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 15.95, 'bike1.jpg', 'Dostępny', 2, 1),
+(107, 'OPE-97', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 98.55, 'bike1.jpg', 'Dostępny', 4, 1),
+(108, 'ABC-45', 'Ten rower jest specjalistycznym, profesjonalnym pojazdem, zaprojektowanym dla wytrzymałych i ambitnych kolarzy. Jego stalowa rama jest osadzona w tylnym osiowym ustawieniu, co umożliwia szybkie rozpędzanie i stabilne hamowanie', 23.85, 'bike1.jpg', 'Dostępny', 3, 1),
+(109, 'TYR-36', 'To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis ', 15.9, 'bike1.jpg', 'Dostępny', 3, 1),
+(110, 'QWE-54', 'To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis ', 15.75, 'bike1.jpg', 'Dostępny', 3, 1),
+(111, 'OWE-72', 'To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis ', 25.5, 'bike1.jpg', 'Dostępny', 4, 1),
+(112, 'KOM-45', 'To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis ', 45.98, 'bike1.jpg', 'Dostępny', 1, 1),
+(113, 'NAP-90', 'To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis ', 98.55, 'bike1.jpg', 'Dostępny', 4, 1),
+(115, 'TPXYT-09', 'To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis To jest opis ', 15.9, 'bike1.jpg', 'Dostępny', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `rentals`
+--
+
+CREATE TABLE `rentals` (
+  `id_rental` int(11) NOT NULL,
+  `id_bike` int(11) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `date_start` datetime DEFAULT NULL,
+  `date_end` datetime DEFAULT NULL,
+  `accepted` tinyint(1) DEFAULT NULL,
+  `returned_in_term` tinyint(1) DEFAULT NULL,
+  `not_returned_in_term` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 -- --------------------------------------------------------
 
@@ -80,7 +90,8 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id_role`, `role`, `is_activated`) VALUES
 (5, 'admin', 1),
-(6, 'worker', 1);
+(6, 'worker', 1),
+(8, 'user', 1);
 
 -- --------------------------------------------------------
 
@@ -115,19 +126,18 @@ CREATE TABLE `users` (
   `surname` varchar(30) NOT NULL,
   `e-mail` varchar(30) NOT NULL,
   `login` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `when_modified` datetime NOT NULL,
-  `who_modified` int(11) DEFAULT NULL
+  `who_modified` int(11) DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id_user`, `first_name`, `surname`, `e-mail`, `login`, `password`, `when_modified`, `who_modified`) VALUES
-(42, 'imie1', 'nazwisko1', 'email1', 'szef', 'szef', '2024-05-28 00:36:32', 42),
-(43, 'imie2', 'nazwisko2', 'email2', 'pracownik1', 'pracownik1', '2024-05-28 00:44:56', 43),
-(44, 'imie3', 'nazwisko3', 'email3', 'randomLogin123', 'randomLogin123', '2024-05-28 00:46:02', 44);
+INSERT INTO `users` (`id_user`, `first_name`, `surname`, `e-mail`, `login`, `password`, `when_modified`, `who_modified`, `is_active`) VALUES
+(56, 'Imiee', 'Nazwisko', 'Imiee@gmail.com', 'szef123', '$2y$10$zMyPeAxeCh2hIB65UkSAm.tTfGWbNc4xAUGFrCfiAKX2Kaa44vo2a', '2024-06-04 01:19:26', 56, 1);
 
 -- --------------------------------------------------------
 
@@ -148,8 +158,8 @@ CREATE TABLE `user_role` (
 --
 
 INSERT INTO `user_role` (`id_user`, `id_role`, `active_since`, `active_until`, `is_activated`) VALUES
-(42, 5, '2024-05-28 00:38:29', NULL, 1),
-(43, 6, '2024-05-28 00:47:52', NULL, 1);
+(56, 8, '2024-06-04 01:19:26', NULL, 1),
+(56, 5, '2024-06-04 01:20:28', NULL, 1);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -161,6 +171,14 @@ INSERT INTO `user_role` (`id_user`, `id_role`, `active_since`, `active_until`, `
 ALTER TABLE `bikes`
   ADD PRIMARY KEY (`id_bike`),
   ADD KEY `id_type` (`id_type`);
+
+--
+-- Indeksy dla tabeli `rentals`
+--
+ALTER TABLE `rentals`
+  ADD PRIMARY KEY (`id_rental`),
+  ADD KEY `id_bike` (`id_bike`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indeksy dla tabeli `roles`
@@ -196,13 +214,19 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `bikes`
 --
 ALTER TABLE `bikes`
-  MODIFY `id_bike` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `id_bike` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+
+--
+-- AUTO_INCREMENT for table `rentals`
+--
+ALTER TABLE `rentals`
+  MODIFY `id_rental` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `types_of_bikes`
@@ -214,7 +238,7 @@ ALTER TABLE `types_of_bikes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- Constraints for dumped tables
@@ -225,6 +249,13 @@ ALTER TABLE `users`
 --
 ALTER TABLE `bikes`
   ADD CONSTRAINT `bikes_ibfk_1` FOREIGN KEY (`id_type`) REFERENCES `types_of_bikes` (`id_type`);
+
+--
+-- Constraints for table `rentals`
+--
+ALTER TABLE `rentals`
+  ADD CONSTRAINT `rentals_ibfk_1` FOREIGN KEY (`id_bike`) REFERENCES `bikes` (`id_bike`),
+  ADD CONSTRAINT `rentals_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
 
 --
 -- Constraints for table `users`
